@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://indexhtm6-bot.github.io/Bu-Creator/sitemap.xml
