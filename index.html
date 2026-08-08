@@ -49,6 +49,9 @@
     <a class="nav-btn" href="#contact" data-aos="fade-left">
        Custom Order 
     </a>
+    <div class="mobile-menu-btn" onclick="toggleMobileMenu()">
+    <i class="fas fa-bars"></i>
+</div>
 </nav>
 
 <!--================ HERO ================-->
@@ -1285,6 +1288,13 @@ Made with premium beads and available in every letter, these charming keyring ma
         buttons.forEach(btn => btn.classList.remove('active'));
         buttons[slideIndex].classList.add('active');
     }
+    function toggleMobileMenu() {
+
+    const menu = document.querySelector("nav ul");
+
+    menu.classList.toggle("mobile-open");
+
+}
 </script>
 </body>
 </html>
