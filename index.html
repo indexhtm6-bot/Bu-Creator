@@ -1271,75 +1271,20 @@ Made with premium beads and available in every letter, these charming keyring ma
 
 <script>
     AOS.init({
-        duration: 800,
+        duration: 1000,
         once: true,
-        offset: 80
+        offset: 120
     });
 
     function goToSlide(slideIndex) {
-
         const slider = document.getElementById('slider');
-        const slides = document.querySelectorAll('.slide');
         const buttons = document.querySelectorAll('.collection-btn');
 
-        /* Move slider */
-        slider.style.transform =
-            `translateX(-${slideIndex * 20}%)`;
+        slider.style.transform = `translateX(-${slideIndex * 20}%)`;
 
-        /* Active button */
-        buttons.forEach(btn => {
-            btn.classList.remove('active');
-        });
-
+        buttons.forEach(btn => btn.classList.remove('active'));
         buttons[slideIndex].classList.add('active');
-
-        /* Fix slider height */
-        const activeSlide = slides[slideIndex];
-
-        if (activeSlide) {
-            slider.style.height = activeSlide.scrollHeight + 'px';
-        }
-
-        /* Refresh AOS for new cards */
-        setTimeout(() => {
-            AOS.refreshHard();
-        }, 100);
     }
-
-    /* Set correct height on page load */
-    window.addEventListener('load', function () {
-
-        const slider = document.getElementById('slider');
-        const slides = document.querySelectorAll('.slide');
-
-        if (slides.length > 0) {
-            slider.style.height = slides[0].scrollHeight + 'px';
-        }
-
-    });
-
-    /* Fix height when screen size changes */
-    window.addEventListener('resize', function () {
-
-        const slider = document.getElementById('slider');
-        const slides = document.querySelectorAll('.slide');
-        const activeButton =
-            document.querySelector('.collection-btn.active');
-
-        if (!slider || !slides.length) return;
-
-        let activeIndex = 0;
-
-        document.querySelectorAll('.collection-btn')
-            .forEach((btn, index) => {
-                if (btn.classList.contains('active')) {
-                    activeIndex = index;
-                }
-            });
-
-        slider.style.height =
-            slides[activeIndex].scrollHeight + 'px';
-    });
 </script>
 </body>
 </html>
