@@ -29,6 +29,7 @@
 <meta property="og:image" content="https://indexhtm6-bot.github.io/Bu-Creator/banner logo.png">
 <meta property="og:url" content="https://indexhtm6-bot.github.io/Bu-Creator/">
 <meta property="og:type" content="website">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
@@ -1270,20 +1271,75 @@ Made with premium beads and available in every letter, these charming keyring ma
 
 <script>
     AOS.init({
-        duration: 1000,
+        duration: 800,
         once: true,
-        offset: 120
+        offset: 80
     });
 
     function goToSlide(slideIndex) {
+
         const slider = document.getElementById('slider');
+        const slides = document.querySelectorAll('.slide');
         const buttons = document.querySelectorAll('.collection-btn');
 
-        slider.style.transform = `translateX(-${slideIndex * 20}%)`;
+        /* Move slider */
+        slider.style.transform =
+            `translateX(-${slideIndex * 20}%)`;
 
-        buttons.forEach(btn => btn.classList.remove('active'));
+        /* Active button */
+        buttons.forEach(btn => {
+            btn.classList.remove('active');
+        });
+
         buttons[slideIndex].classList.add('active');
+
+        /* Fix slider height */
+        const activeSlide = slides[slideIndex];
+
+        if (activeSlide) {
+            slider.style.height = activeSlide.scrollHeight + 'px';
+        }
+
+        /* Refresh AOS for new cards */
+        setTimeout(() => {
+            AOS.refreshHard();
+        }, 100);
     }
+
+    /* Set correct height on page load */
+    window.addEventListener('load', function () {
+
+        const slider = document.getElementById('slider');
+        const slides = document.querySelectorAll('.slide');
+
+        if (slides.length > 0) {
+            slider.style.height = slides[0].scrollHeight + 'px';
+        }
+
+    });
+
+    /* Fix height when screen size changes */
+    window.addEventListener('resize', function () {
+
+        const slider = document.getElementById('slider');
+        const slides = document.querySelectorAll('.slide');
+        const activeButton =
+            document.querySelector('.collection-btn.active');
+
+        if (!slider || !slides.length) return;
+
+        let activeIndex = 0;
+
+        document.querySelectorAll('.collection-btn')
+            .forEach((btn, index) => {
+                if (btn.classList.contains('active')) {
+                    activeIndex = index;
+                }
+            });
+
+        slider.style.height =
+            slides[activeIndex].scrollHeight + 'px';
+    });
 </script>
 </body>
 </html>
